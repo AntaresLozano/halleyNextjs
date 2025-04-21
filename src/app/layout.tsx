@@ -19,11 +19,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${k2dFont.className} antialiased px-7 relative`}>
-        <Header />
-        {children}
-      </body>
-    </html>
+    <>
+      <html lang="en">
+        <body className={`${k2dFont.className} antialiased relative`}>
+          <Header />
+          {children}
+        </body>
+      </html>
+    </>
   );
 }
