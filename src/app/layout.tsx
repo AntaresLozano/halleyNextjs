@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { K2D } from "next/font/google";
 import "./globals.css";
 import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 
 const k2dFont = K2D({
   subsets: ["latin"], // Asegúrate de especificar los subsets
@@ -24,6 +25,7 @@ export default function RootLayout({
         <body className={`${k2dFont.className} antialiased relative`}>
           <Header />
           {children}
+          <Footer />
         </body>
       </html>
     </>

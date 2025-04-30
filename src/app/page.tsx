@@ -1,10 +1,13 @@
 import { AboutUs } from "./components/AboutUs";
 import { Blogs } from "./components/Blogs";
 import { Button } from "./components/Button";
+import { ContactSection } from "./components/ContactSection";
 import { Hero } from "./components/Hero";
 import { MessageSection } from "./components/MessageSection";
 import { Service } from "./components/Service";
 import { Services } from "./components/Services";
+import { ServicesSlider } from "./components/ServicesSlider";
+import { ServicesSliderLeft } from "./components/ServicesSliderLeft";
 
 export default function Home() {
   return (
@@ -38,6 +41,13 @@ export default function Home() {
         <h1 className=" absolute text-[10rem] top-[-70]  left-[-20] opacity-10 md:text-[40rem] xl:top-[-400] xl:text-[50rem]">
           BLOG
         </h1>
+        <div className="absolute top-[] w-screen h-10 mt-10 pb-20">
+          <ServicesSlider />
+          <ServicesSliderLeft />
+        </div>
+      </div>
+      <div className="px-3 md:px-13">
+        <ContactSection />
       </div>
     </div>
   );

@@ -30,7 +30,7 @@ export const Menu = ({ setShowMenu }: MenuProps) => {
       <MenuItem setShowMenu={setShowMenu} name="HOME" />
       <MenuItem setShowMenu={setShowMenu} name="services" />
       <MenuItem setShowMenu={setShowMenu} name="portfolio" />
-      <MenuItem setShowMenu={setShowMenu} name="blog" />
+      <MenuItem setShowMenu={setShowMenu} name="blogs" />
       <MenuItem setShowMenu={setShowMenu} name="contact" />
       <div className="w-4/5 h-16 flex flex-wrap justify-center pt-6 gap-3.5 max-w-[70vw] self-center">
         <a className="text-[#00FF7F] hover:text-white text-sm md:text-base" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
