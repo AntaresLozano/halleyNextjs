@@ -5,4 +5,5 @@ export interface Blog {
   description: string;
   topic: string;
   date: string;
+  slug: string;
 }

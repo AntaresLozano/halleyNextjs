@@ -69,7 +69,7 @@ export const ServicesSliderLeft = () => {
               className="px-4 py-2 inline-flex justify-center items-center gap-2 bg-transparent rounded-full whitespace-nowrap border-1 border-gray-400"
               href={`/services/${service.id}`}
             >
-              <h3 className="text-base text-gray-400">
+              <h3 className=" text-xs  md:text-base text-gray-400">
                 {service.name.toUpperCase()}
               </h3>
               <Image
@@ -77,6 +77,7 @@ export const ServicesSliderLeft = () => {
                 alt="arrow"
                 width={20}
                 height={20}
+                className="w-[13] md:w-[20]"
               />
             </a>
           </SwiperSlide>

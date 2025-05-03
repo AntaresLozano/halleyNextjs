@@ -3,6 +3,8 @@ import { K2D } from "next/font/google";
 import "./globals.css";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+// import { Suspense } from "react";
+// import Loading from "./Loading";
 
 const k2dFont = K2D({
   subsets: ["latin"], // Asegúrate de especificar los subsets

@@ -1,5 +1,3 @@
-import Image from "next/image";
-import { TopicSelector } from "./components/TopicSelector";
 import { BlogList } from "./components/BlogList";
 import { Blog } from "./interfaces/blog.interface";
 
@@ -13,6 +11,7 @@ export default function Blogs() {
         "cositas Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque rerum ea error, quae voluptate temporibus necessitatibus nemo mollitia earum fuga voluptatibus qui consectetur optio numquam tempore quia saepe a sint",
       topic: "VIDEO PRODUCTION",
       date: "2022-01-01",
+      slug: "blog-title-1",
     },
     {
       id: "2",
@@ -22,6 +21,7 @@ export default function Blogs() {
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque rerum ea error, quae voluptate temporibus necessitatibus nemo mollitia earum fuga voluptatibus qui consectetur optio numquam tempore quia saepe a sint",
       topic: "POST PRODUCTION",
       date: "2022-01-02",
+      slug: "blog-title-2",
     },
     {
       id: "3",
@@ -31,6 +31,7 @@ export default function Blogs() {
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque rerum ea error, quae voluptate temporibus necessitatibus nemo mollitia earum fuga voluptatibus qui consectetur optio numquam tempore quia saepe a sint",
       topic: "PHOTOGRAPHY",
       date: "2022-01-03",
+      slug: "blog-title-3",
     },
     {
       id: "4",
@@ -40,6 +41,7 @@ export default function Blogs() {
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque rerum ea error, quae voluptate temporibus necessitatibus nemo mollitia earum fuga voluptatibus qui consectetur optio numquam tempore quia saepe a sint",
       topic: "VIDEO PRODUCTION",
       date: "2022-01-04",
+      slug: "blog-title-3-video-production",
     },
     {
       id: "5",
@@ -49,6 +51,7 @@ export default function Blogs() {
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque rerum ea error, quae voluptate temporibus necessitatibus nemo mollitia earum fuga voluptatibus qui consectetur optio numquam tempore quia saepe a sint",
       topic: "POST PRODUCTION",
       date: "2022-01-05",
+      slug: "blog-title-3-post-production",
     },
     {
       id: "6",
@@ -58,6 +61,7 @@ export default function Blogs() {
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque rerum ea error, quae voluptate temporibus necessitatibus nemo mollitia earum fuga voluptatibus qui consectetur optio numquam tempore quia saepe a sint",
       topic: "PHOTOGRAPHY",
       date: "2022-01-06",
+      slug: "blog-title-3-photography",
     },
     {
       id: "7",
@@ -67,6 +71,7 @@ export default function Blogs() {
         "cositas Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque rerum ea error, quae voluptate temporibus necessitatibus nemo mollitia earum fuga voluptatibus qui consectetur optio numquam tempore quia saepe a sint",
       topic: "VIDEO PRODUCTION",
       date: "2022-01-01",
+      slug: "blog-title-1-video-production",
     },
     {
       id: "8",
@@ -76,6 +81,7 @@ export default function Blogs() {
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque rerum ea error, quae voluptate temporibus necessitatibus nemo mollitia earum fuga voluptatibus qui consectetur optio numquam tempore quia saepe a sint",
       topic: "POST PRODUCTION",
       date: "2022-01-02",
+      slug: "blog-title-2-post-production",
     },
     {
       id: "9",
@@ -85,6 +91,7 @@ export default function Blogs() {
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque rerum ea error, quae voluptate temporibus necessitatibus nemo mollitia earum fuga voluptatibus qui consectetur optio numquam tempore quia saepe a sint",
       topic: "PHOTOGRAPHY",
       date: "2022-01-03",
+      slug: "blog-title-3-photography",
     },
     {
       id: "10",
@@ -94,6 +101,7 @@ export default function Blogs() {
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque rerum ea error, quae voluptate temporibus necessitatibus nemo mollitia earum fuga voluptatibus qui consectetur optio numquam tempore quia saepe a sint",
       topic: "VIDEO PRODUCTION",
       date: "2022-01-04",
+      slug: "blog-title-3-video-production",
     },
     {
       id: "11",
@@ -103,6 +111,7 @@ export default function Blogs() {
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque rerum ea error, quae voluptate temporibus necessitatibus nemo mollitia earum fuga voluptatibus qui consectetur optio numquam tempore quia saepe a sint",
       topic: "POST PRODUCTION",
       date: "2022-01-05",
+      slug: "blog-title-3-post-production",
     },
     {
       id: "12",
@@ -112,29 +121,15 @@ export default function Blogs() {
         "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque rerum ea error, quae voluptate temporibus necessitatibus nemo mollitia earum fuga voluptatibus qui consectetur optio numquam tempore quia saepe a sint",
       topic: "PHOTOGRAPHY",
       date: "2022-01-06",
+      slug: "blog-title-3-photography",
     },
   ];
 
   return (
-    <div className="w-screen pt-[35vh] flex flex-col items-center">
-      <h1 className="text-white text-9xl mb-8">AUDIOVISUAL BLOG</h1>
-      <div className="w-1/2 h-16 bg-transparent border-2 border-white text-white text-2xl flex  py-2">
-        <div className="w-16 border-r-2 border-white h-full flex items-center justify-center">
-          <Image
-            src="/images/search.svg"
-            width={30}
-            height={10}
-            alt="search"
-            className="object-contain"
-          />
-        </div>
-        <input
-          type="text"
-          placeholder="SEARCH..."
-          className="w-full h-full bg-transparent text-white text-2xl pl-4 mb-2 focus:outline-none"
-        />
-      </div>
-      <TopicSelector />
+    <div className="w-screen pt-[20vh]  md:pt-[30vh] flex flex-col items-center">
+      <h1 className="text-white text-center text-5xl md:text-9xl mb-0 md:mb-8">
+        AUDIOVISUAL BLOG
+      </h1>
       <BlogList blogs={blogs} />
     </div>
   );

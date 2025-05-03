@@ -13,7 +13,7 @@ export const Header = () => {
       <div className=" h-20 flex bg-transparent border-b-2 border-gray-400 border-solid justify-between items-center">
         <Link href="/" className="md:px-7">
           <Image
-            src="logo.svg"
+            src="/logo.svg"
             alt="Halley Cinema logo"
             width={100}
             height={100}

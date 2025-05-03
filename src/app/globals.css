@@ -25,3 +25,42 @@ body {
   color: #670909; /* Cambia color de las flechas */
   
 }
+
+/* Estilo personalizado para la scrollbar */
+body::-webkit-scrollbar {
+  width: 6px; /* Ancho de la barra vertical */
+  height: 6px; /* Alto de la barra horizontal */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: green; /* Color del scroll */
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent; /* Fondo transparente */
+}
+
+/* Firefox */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: green transparent;
+}
+
+/* Estilos de navegación de Swiper */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #00ff80a1; /* Cambia color de las flechas */
+}
+
+
+div::-webkit-scrollbar {
+  width: 8px;
+}
+div::-webkit-scrollbar-thumb {
+  background: #22c55e;
+  border-radius: 4px;
+}
+div::-webkit-scrollbar-track {
+  background: #222;
+}

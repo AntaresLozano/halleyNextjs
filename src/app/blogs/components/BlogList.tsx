@@ -36,25 +36,37 @@ export const BlogList = ({ blogs }: BlogsProps) => {
   const topics = ["ALL", "VIDEO PRODUCTION", "POST PRODUCTION", "PHOTOGRAPHY"];
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto py-12 px-4">
       {/* Filtros */}
       <div className="mb-8">
-        <div className="flex flex-col md:flex-row gap-4 mb-6">
-          <input
-            type="text"
-            placeholder="Search blogs..."
-            className="px-4 py-2 border border-gray-300 rounded-md"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <div className="flex gap-4">
+        <div className="w-full flex flex-col items-center gap-4 mb-6">
+          <div className="w-full md:w-4/6 h-16 bg-transparent border-2 border-white text-white text-2xl flex py-2">
+            <div className="w-16 border-r-2 border-white h-full flex items-center justify-center">
+              <Image
+                src="/images/search.svg"
+                width={30}
+                height={10}
+                alt="search"
+                className="object-contain"
+              />
+            </div>
+            <input
+              type="text"
+              placeholder="SEARCH..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full h-full bg-transparent text-white text-2xl pl-4 mb-2 focus:outline-none"
+            />
+          </div>
+          <div className="flex w-full md:w-auto gap-4 items-center overflow-x-auto scrollbar-hide">
+            <span className="text-white text-2xl">TOPIC:</span>
             {topics.map((topic) => (
               <button
                 key={topic}
-                className={`px-4 py-2 rounded-md ${
+                className={`text-center px-7 py-3 text-2xl whitespace-nowrap ${
                   selectedTopic === topic
                     ? "bg-[#00FF7F] text-black"
-                    : "bg-white text-black border border-gray-300"
+                    : " text-white border border-gray-300"
                 }`}
                 onClick={() => setSelectedTopic(topic)}
               >
@@ -70,8 +82,8 @@ export const BlogList = ({ blogs }: BlogsProps) => {
         {currentBlogs.map((blog) => (
           <div
             key={blog.id}
-            className="bg-white rounded-lg overflow-hidden shadow-lg cursor-pointer hover:shadow-xl transition-shadow duration-300"
-            onClick={() => router.push(`/blog/${blog.id}`)}
+            className=" rounded-lg overflow-hidden shadow-lg cursor-pointer hover:shadow-xl transition-shadow duration-300  border-1 border-white"
+            onClick={() => router.push(`/blogs/${blog.slug}`)}
           >
             <div className="relative h-48">
               <Image
@@ -84,7 +96,7 @@ export const BlogList = ({ blogs }: BlogsProps) => {
             <div className="p-4">
               <span className="text-sm text-gray-500">{blog.date}</span>
               <h3 className="text-xl font-bold mt-2">{blog.title}</h3>
-              <p className="text-gray-600 mt-2 line-clamp-3">
+              <p className="text-gray-200 mt-2 line-clamp-3">
                 {blog.description}
               </p>
               <div className="mt-4">

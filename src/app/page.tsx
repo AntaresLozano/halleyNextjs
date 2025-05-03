@@ -2,7 +2,7 @@ import { AboutUs } from "./components/AboutUs";
 import { Blogs } from "./components/Blogs";
 import { Button } from "./components/Button";
 import { ContactSection } from "./components/ContactSection";
-import { Hero } from "./components/Hero";
+import Hero from "./components/Hero";
 import { MessageSection } from "./components/MessageSection";
 import { Service } from "./components/Service";
 import { Services } from "./components/Services";
@@ -46,7 +46,7 @@ export default function Home() {
           <ServicesSliderLeft />
         </div>
       </div>
-      <div className="px-3 md:px-13">
+      <div className="px-3 mt-50 md:mt-0 md:px-13">
         <ContactSection />
       </div>
     </div>
