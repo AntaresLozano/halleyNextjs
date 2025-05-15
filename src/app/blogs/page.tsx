@@ -1,5 +1,7 @@
+'use client'
 import { BlogList } from "./components/BlogList";
 import { Blog } from "./interfaces/blog.interface";
+import { motion } from "framer-motion";
 
 export default function Blogs() {
   const blogs: Blog[] = [
@@ -127,9 +129,13 @@ export default function Blogs() {
 
   return (
     <div className="w-screen pt-[20vh]  md:pt-[30vh] flex flex-col items-center">
-      <h1 className="text-white text-center text-5xl md:text-9xl mb-0 md:mb-8">
+      <motion.h1
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.5 }}
+      className="text-white text-center text-5xl md:text-9xl mb-0 md:mb-8">
         AUDIOVISUAL BLOG
-      </h1>
+      </motion.h1>
       <BlogList blogs={blogs} />
     </div>
   );

@@ -8,36 +8,62 @@ import { Service } from "./components/Service";
 import { Services } from "./components/Services";
 import { ServicesSlider } from "./components/ServicesSlider";
 import { ServicesSliderLeft } from "./components/ServicesSliderLeft";
+import { fetchData } from "@/utils/api";
 
-export default function Home() {
+interface Service {
+  id: string;
+  name: string;
+  description: string;
+  image: { url: string };
+}
+
+async function getHeroData() {
+  return await fetchData("/hero");
+}
+async function getAboutUsData() {
+  return await fetchData("/aboutus");
+}
+async function getServiceSectionData() {
+  return await fetchData("/service-section");
+}
+async function getServicesData() {
+  return await fetchData("/services");
+}
+async function getBlogsData() {
+  return await fetchData("/blogs");
+}
+
+export default async function Home() {
+  const heroData = await getHeroData();
+  const aboutUsData = await getAboutUsData();
+  const serviceSectionData = await getServiceSectionData();
+  const servicesData = await getServicesData();
+  const blogsData = await getBlogsData();
+  console.log(blogsData);
   return (
     <div>
-      <Hero />
+      <Hero heroData={heroData} />
       <div className="px-3 md:px-13">
-        <AboutUs />
-        <Services />
-        <Service
-          name="VIDEO PRODUCTION"
-          description="High - quality filming & storytelling"
-          img="/images/service1.png"
+        <AboutUs aboutUsData={aboutUsData} />
+        <Services
+          title={serviceSectionData.title}
+          description={serviceSectionData.description}
         />
-        <Service
-          name="post PRODUCTION"
-          description="editing, color grading & vfx"
-          img="/images/service2.png"
-        />
-        <Service
-          name="Photography"
-          description="Stunning Images for your brand"
-          img="/images/service3.png"
-        />
+        {servicesData.map((service: Service) => (
+          <Service
+            key={service.id}
+            name={service.name}
+            description={service.description}
+            img={service.image}
+          />
+        ))}
         <div className="w-full flex justify-center py-20 items-center">
           <Button name="DISCOVER MORE" path="/services" />
         </div>
         <MessageSection />
       </div>
       <div className="relative">
-        <Blogs />
+        <Blogs blogsData={blogsData} />
         <h1 className=" absolute text-[10rem] top-[-70]  left-[-20] opacity-10 md:text-[40rem] xl:top-[-400] xl:text-[50rem]">
           BLOG
         </h1>

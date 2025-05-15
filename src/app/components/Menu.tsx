@@ -10,9 +10,11 @@ interface MenuProps {
 
 export const Menu = ({ setShowMenu }: MenuProps) => {
   return (
-    <div className="flex flex-col fixed w-screen h-screen bg-black top-0 left-0 z-10">
+    <div className="flex flex-col fixed w-screen h-screen bg-black top-0 left-0 z-50">
       <div className="flex justify-between items-center w-full h-32 px-7 mb-4 md:px-20  ">
-        <Link href="/">
+        <Link href="/"
+         onClick={() => setShowMenu(false)} 
+        >
           <Image
             src="green_logo.svg"
             alt="Halley Cinema logo"

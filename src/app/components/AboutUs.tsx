@@ -2,7 +2,7 @@
 import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-export const AboutUs = () => {
+export const AboutUs = ({ aboutUsData }: { aboutUsData: { title: string; description: string; projects: number; clients: number; countries: number; creatives: number } }) => {
   const aboutRef = useRef(null);
   const [linePosition, setLinePosition] = useState(355); // Valor inicial por defecto
 
@@ -29,7 +29,7 @@ export const AboutUs = () => {
           transition={{ duration: 0.8 }}
           className="text-5xl md:text-7xl relative inline-block z-10 before:absolute before:left-[-95px] before:top-1/2 before:h-[5px] before:w-[100px] before:bg-[url('/images/line.svg')] before:bg-contain before:bg-no-repeat before:transform before:-translate-y-1/2"
         >
-          ABOUT US
+          {aboutUsData.title}
         </motion.h1>
         <motion.div
           initial={{ opacity: 0, scaleX: 0 }}
@@ -47,18 +47,15 @@ export const AboutUs = () => {
         transition={{ duration: 0.8, delay: 0.3 }}
         className="text-xs md:text-lg md:max-w-[80%]"
       >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi neque
-        similique earum, quod alias atque voluptate sed, odio quibusdam
-        provident repellat fugit repellendus, vero ullam. Consequatur
-        dignissimos consectetur quisquam et!
+        {aboutUsData.description}
       </motion.p>
       
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { number: "100", label: "PROYECTS" },
-          { number: "726", label: "CLIENTS" },
-          { number: "7", label: "COUNTRIES" },
-          { number: "4", label: "CREATIVES" }
+          { number: aboutUsData.projects, label: "PROJECTS" },
+          { number: aboutUsData.clients, label: "CLIENTS" },
+          { number: aboutUsData.countries, label: "COUNTRIES" },
+          { number: aboutUsData.creatives, label: "CREATIVES" }
         ].map((item, index) => (
           <motion.div
             key={index}

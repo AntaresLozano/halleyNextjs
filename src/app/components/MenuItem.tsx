@@ -1,5 +1,6 @@
 'use client'
 import Link from "next/link"
+import Image from "next/image"
 import { motion } from "framer-motion"
 
 interface MenuProps {
@@ -26,7 +27,7 @@ export const MenuItem = ({ name, delay, setShowMenu }: MenuProps) => {
 
       {/* Ícono SVG que aparece al hacer hover */}
       <div className="absolute right-20 hidden group-hover:block w-16 h-16">
-        <img src="/arrow_up.svg" alt="Flecha arriba" className="w-full h-full object-contain" />
+        <Image width={64} height={64} src="/arrow_up.svg" alt="Flecha arriba" layout="fill" objectFit="contain" />
       </div>
     </motion.div>
   )

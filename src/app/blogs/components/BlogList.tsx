@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Blog } from "../interfaces/blog.interface";
+import { motion } from "framer-motion";
 
 interface BlogsProps {
   blogs: Blog[];
@@ -38,7 +39,12 @@ export const BlogList = ({ blogs }: BlogsProps) => {
   return (
     <div className="container mx-auto py-12 px-4">
       {/* Filtros */}
-      <div className="mb-8">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.5 }}
+        className="mb-8"
+      >
         <div className="w-full flex flex-col items-center gap-4 mb-6">
           <div className="w-full md:w-4/6 h-16 bg-transparent border-2 border-white text-white text-2xl flex py-2">
             <div className="w-16 border-r-2 border-white h-full flex items-center justify-center">
@@ -63,7 +69,7 @@ export const BlogList = ({ blogs }: BlogsProps) => {
             {topics.map((topic) => (
               <button
                 key={topic}
-                className={`text-center px-7 py-3 text-2xl whitespace-nowrap ${
+                className={`text-center px-7 py-3 text-2xl whitespace-nowrap cursor-pointer hover:bg-[#00FF7F] hover:text-black transition-all duration-300 ${
                   selectedTopic === topic
                     ? "bg-[#00FF7F] text-black"
                     : " text-white border border-gray-300"
@@ -75,13 +81,16 @@ export const BlogList = ({ blogs }: BlogsProps) => {
             ))}
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Grid de blogs */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {currentBlogs.map((blog) => (
-          <div
+          <motion.div
             key={blog.id}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
             className=" rounded-lg overflow-hidden shadow-lg cursor-pointer hover:shadow-xl transition-shadow duration-300  border-1 border-white"
             onClick={() => router.push(`/blogs/${blog.slug}`)}
           >
@@ -105,7 +114,7 @@ export const BlogList = ({ blogs }: BlogsProps) => {
                 </span>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
