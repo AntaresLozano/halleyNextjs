@@ -50,7 +50,7 @@ export default async function BlogDetailPage({ params }: Props) {
           priority
         />
       </div>
-      <article 
+      <article
         className=" mx-10 md:mx-40 my-20 text-white prose prose-invert prose-lg max-w-none"
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
