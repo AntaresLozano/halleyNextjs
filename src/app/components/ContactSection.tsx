@@ -8,7 +8,7 @@ export const ContactSection = () => {
       </div>
       <div className="flex-1 flex flex-col items-center max-w-4xl mx-auto lg:mx-0 lg:px-20">
         <p className="text-sm sm:text-base text-center lg:text-left w-full lg:w-[85%] mb-6">
-          LET US KNOW WHAT YOU'RE LOOKING FOR ↴ AND WE'LL BE IN TOUCH.
+          {`LET US KNOW WHAT YOU'RE LOOKING FOR ↴ AND WE'LL BE IN TOUCH.`}
         </p>
 
         <form className="w-full lg:w-[85%] space-y-4">
