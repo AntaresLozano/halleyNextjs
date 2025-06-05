@@ -1,7 +1,26 @@
+"use client";
+import { fetchData } from "@/utils/api";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+
+interface Social {
+  id: string;
+  name: string;
+  link: string;
+}
 
 export const Footer = () => {
+  const [socialData, setSocialData] = useState<Social[]>([]);
+
+  useEffect(() => {
+    const fetchSocialData = async () => {
+      const data = await fetchData("/socials");
+      setSocialData(data);
+    };
+    fetchSocialData();
+  }, []);
+
   return (
     <div className="w-full flex flex-col bg-[#00FF7F]">
       <div className="flex flex-col px-4 md:px-8 lg:px-16">
@@ -52,21 +71,11 @@ export const Footer = () => {
         </div>
         <div className="flex flex-col md:flex-row justify-end text-black">
           <div className="w-full md:w-1/2 flex flex-wrap gap-4 md:gap-16 py-5">
-            <Link href="/" className="text-md hover:opacity-80">
-              INSTAGRAM
-            </Link>
-            <Link href="/" className="text-md hover:opacity-80">
-              TIKTOK
-            </Link>
-            <Link href="/" className="text-md hover:opacity-80">
-              BEHANCE
-            </Link>
-            <Link href="/" className="text-md hover:opacity-80">
-              YOUTUBE
-            </Link>
-            <Link href="/" className="text-md hover:opacity-80">
-              FACEBOOK
-            </Link>
+            {socialData.map((social) => (
+              <Link key={social.id} href={social.link} target="_blank" className="text-md hover:opacity-80">
+                {social.name}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

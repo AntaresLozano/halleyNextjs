@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect } from 'react';
 import { AboutUs } from "./components/AboutUs";
 import { Blogs } from "./components/Blogs";
 import { Button } from "./components/Button";
@@ -9,7 +12,8 @@ import { Services } from "./components/Services";
 import { ServicesSlider } from "./components/ServicesSlider";
 import { ServicesSliderLeft } from "./components/ServicesSliderLeft";
 import { fetchData } from "@/utils/api";
-
+import { useAppContext } from '@/context/AppContext';
+import { Loader } from "./components/Loader";
 interface Service {
   id: string;
   name: string;
@@ -17,29 +21,52 @@ interface Service {
   image: { url: string };
 }
 
-async function getHeroData() {
-  return await fetchData("/hero");
-}
-async function getAboutUsData() {
-  return await fetchData("/aboutus");
-}
-async function getServiceSectionData() {
-  return await fetchData("/service-section");
-}
-async function getServicesData() {
-  return await fetchData("/services");
-}
-async function getBlogsData() {
-  return await fetchData("/blogs");
-}
+export default function Home() {
+  const {
+    heroData,
+    aboutUsData,
+    serviceSectionData,
+    servicesData,
+    blogsData,
+    messageSectionData,
+    allServiceItemsData,
+    setHeroData,
+    setAboutUsData,
+    setServiceSectionData,
+    setServicesData,
+    setBlogsData,
+    setMessageSectionData,
+    setAllServiceItemsData,
+  } = useAppContext();
 
-export default async function Home() {
-  const heroData = await getHeroData();
-  const aboutUsData = await getAboutUsData();
-  const serviceSectionData = await getServiceSectionData();
-  const servicesData = await getServicesData();
-  const blogsData = await getBlogsData();
-  console.log(blogsData);
+  useEffect(() => {
+    const fetchAllData = async () => {
+      const [hero, aboutUs, serviceSection, services, blogs, messageSection, allServiceItems] = await Promise.all([
+        fetchData("/hero"),
+        fetchData("/aboutus"),
+        fetchData("/service-section"),
+        fetchData("/services"),
+        fetchData("/blogs"),
+        fetchData("/contact-message"),
+        fetchData("/service-items")
+      ]);
+
+      setHeroData(hero);
+      setAboutUsData(aboutUs);
+      setServiceSectionData(serviceSection);
+      setServicesData(services);
+      setBlogsData(blogs);
+      setMessageSectionData(messageSection);
+      setAllServiceItemsData(allServiceItems);
+    };
+
+    fetchAllData();
+  }, []);
+
+  if (!heroData || !aboutUsData || !serviceSectionData || !servicesData || !blogsData || !messageSectionData || !allServiceItemsData) {
+    return <div className='flex-grow pb-[100vh]' ><Loader /></div>;
+  }
+
   return (
     <div>
       <Hero heroData={heroData} />
@@ -60,7 +87,7 @@ export default async function Home() {
         <div className="w-full flex justify-center py-20 items-center">
           <Button name="DISCOVER MORE" path="/services" />
         </div>
-        <MessageSection />
+        <MessageSection messageSectionData={messageSectionData.message} />
       </div>
       <div className="relative">
         <Blogs blogsData={blogsData} />
@@ -68,8 +95,8 @@ export default async function Home() {
           BLOG
         </h1>
         <div className="absolute top-[] w-screen h-10 mt-10 pb-20">
-          <ServicesSlider />
-          <ServicesSliderLeft />
+          <ServicesSlider allServiceItemsData={allServiceItemsData} />
+          <ServicesSliderLeft allServiceItemsData={allServiceItemsData} />
         </div>
       </div>
       <div className="px-3 mt-50 md:mt-0 md:px-13">

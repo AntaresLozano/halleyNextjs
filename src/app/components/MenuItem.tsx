@@ -27,7 +27,7 @@ export const MenuItem = ({ name, delay, setShowMenu }: MenuProps) => {
 
       {/* Ícono SVG que aparece al hacer hover */}
       <div className="absolute right-20 hidden group-hover:block w-16 h-16">
-        <Image width={64} height={64} src="/arrow_up.svg" alt="Flecha arriba" layout="fill" objectFit="contain" />
+        <Image width={64} height={64} src="/arrow_up.svg" alt="Flecha arriba"  objectFit="contain" />
       </div>
     </motion.div>
   )

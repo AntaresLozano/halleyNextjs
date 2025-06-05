@@ -20,11 +20,10 @@ type Props = {
 export default async function BlogDetailPage({ params }: Props) {
   const post = await getBlogData(params.slug);
   const blogsData = await getBlogsData();
-
   console.log(post);
 
   if (!post) {
-    notFound(); // Devuelve un 404 si no encuentra el slug
+    notFound();
   }
 
   return (

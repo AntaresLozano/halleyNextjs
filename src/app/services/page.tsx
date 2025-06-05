@@ -1,43 +1,57 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
-const services = [
-  {
-    title: "PRE-PRODUCTION",
-    image: "/images/service1.png",
-    items: [
-      "Scriptwriting and Storyboarding",
-      "Location Scouting and Management",
-      "Casting and Talent Management",
-      "Equipment Rental and Logistics",
-      "Permitting and Compliance",
-    ],
-  },
-  {
-    title: "PRODUCTION",
-    image: "/images/service2.png",
-    items: [
-      "Cinematography and Camera Operation",
-      "Sound Recording and Design",
-      "Lighting and Grip Services",
-      "Set Design and Construction",
-      "Production Management",
-    ],
-  },
-  {
-    title: "POST-PRODUCTION",
-    image: "/images/service3.png",
-    items: [
-      "Video Editing and Color Grading",
-      "Sound Mixing and Mastering",
-      "Visual Effects and Animation",
-      "Motion Graphics and Titles",
-      "Final Delivery and Distribution",
-    ],
-  },
-];
+import { fetchData } from "@/utils/api";
+import { useEffect, useState } from "react";
+import { Loader } from "../components/Loader";
+interface ServiceItem {
+  id: string;
+  name: string;
+}
+
+interface Service {
+  id: string;
+  name: string;
+  image: {
+    url: string;
+  };
+  service_items: ServiceItem[];
+}
+
+interface ServiceSection {
+  description: string;
+}
 
 export default function Services() {
+  const [servicesData, setServicesData] = useState<Service[]>([]);
+  const [serviceSectionData, setServiceSectionData] = useState<ServiceSection | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const data = await fetchData("/services");
+        const serviceSectionData = await fetchData("/service-section");
+        setServicesData(data);
+        setServiceSectionData(serviceSectionData);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchServices();
+  }, []);
+
+  if (isLoading) {
+    return <div className="flex-grow pb-[100vh]"><Loader /></div>;
+  }
+
+  if (!servicesData || servicesData.length === 0) {
+    return <div>No services found</div>;
+  }
+
   return (
     <>
       <div className="mx-4 md:mx-10  mt-10 md:mt-40 mb-20">
@@ -71,62 +85,63 @@ export default function Services() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="w-[100%] md:w-[30%] text-lg"
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
-            perferendis, quidem numquam libero itaque animi adipisci, quasi
-            eveniet iusto mollitia ex nesciunt, id officia rem nihil
-            voluptatibus quisquam vel eligendi.
+           {serviceSectionData?.description}
           </motion.p>
         </motion.div>
-        {services.map((service, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-            viewport={{ once: true }}
-            className="w-full flex mb-10 md:mb-20 flex-wrap"
-          >
+        {servicesData.map((service, index) => {
+          const imageUrl = service.image.url;
+          const fullImageUrl = `${process.env.NEXT_PUBLIC_ASSETS}${imageUrl}`;
+          return (
             <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-              className="w-full md:flex-1"
-            >
-              <Image
-                className=" w-full md:flex-1"
-                src={service.image}
-                alt={`${service.title} Image`}
-                width={100}
-                height={100}
-                objectFit="cover"
-              />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              key={service.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="flex flex-col flex-1 gap-4 pt-5 md:pt-0 pl-2 md:pl-10 justify-end"
+              className="w-full flex mb-10 md:mb-20 flex-wrap"
             >
-              <h3 className="text-4xl">{service.title}</h3>
-              <ul
-                className="list-disc pl-5"
-                style={{ listStyleType: "disc", color: "#22c55e" }}
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                className="w-full md:flex-1"
               >
-                {service.items.map((item, itemIndex) => (
-                  <motion.li
-                    key={itemIndex}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: itemIndex * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <span className="text-white">{item}</span>
-                  </motion.li>
-                ))}
-              </ul>
+                <Image
+                  className=" w-full md:flex-1"
+                  src={fullImageUrl}
+                  alt={`${service.name} Image`}
+                  width={600}
+                  height={600}
+                  objectFit="cover"
+                />
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="flex flex-col flex-1 gap-4 pt-5 md:pt-0 pl-2 md:pl-10 justify-end"
+              >
+                <h3 className="text-4xl">{service.name}</h3>
+                <ul
+                  className="list-disc pl-5"
+                  style={{ listStyleType: "disc", color: "#22c55e" }}
+                >
+                  {service.service_items.map((item, itemIndex) => (
+                    <motion.li
+                      key={item.id}
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: itemIndex * 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      <span className="text-white">{item.name}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        ))}
+          );
+        })}
       </div>
     </>
   );

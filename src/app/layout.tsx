@@ -3,8 +3,7 @@ import { K2D } from "next/font/google";
 import "./globals.css";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-// import { Suspense } from "react";
-// import Loading from "./Loading";
+import { AppProvider } from '@/context/AppContext';
 
 const k2dFont = K2D({
   subsets: ["latin"], // Asegúrate de especificar los subsets
@@ -22,14 +21,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <html lang="en">
-        <body className={`${k2dFont.className} antialiased relative`}>
+    <html lang="en">
+      <body className={`${k2dFont.className} antialiased relative`}>
+        <AppProvider>
           <Header />
           {children}
           <Footer />
-        </body>
-      </html>
-    </>
+        </AppProvider>
+      </body>
+    </html>
   );
 }

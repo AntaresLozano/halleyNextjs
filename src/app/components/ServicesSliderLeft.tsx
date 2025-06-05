@@ -11,26 +11,7 @@ interface Service {
   name: string;
 }
 
-const services: Service[] = [
-  { id: "1", name: "General Video Production" },
-  { id: "2", name: "Pre Production" },
-  { id: "3", name: "Camera operation" },
-  { id: "4", name: "Lightning" },
-  { id: "5", name: "Videos" },
-  { id: "6", name: "Vertical Video" },
-  { id: "7", name: "Documentary Production" },
-  { id: "8", name: "TV and Web Commercials" },
-  { id: "9", name: "General Video Production" },
-  { id: "10", name: "Pre Production" },
-  { id: "11", name: "Camera operation" },
-  { id: "12", name: "Lightning" },
-  { id: "13", name: "Videos" },
-  { id: "14", name: "Vertical Video" },
-  { id: "15", name: "Documentary Production" },
-  { id: "16", name: "TV and Web Commercials" },
-];
-
-export const ServicesSliderLeft = () => {
+export const ServicesSliderLeft = ({ allServiceItemsData }: { allServiceItemsData: Service[] }) => {
   const [enableLoop, setEnableLoop] = useState(false);
 
   useEffect(() => {
@@ -42,7 +23,7 @@ export const ServicesSliderLeft = () => {
       else if (screenWidth >= 768) slidesThatFit = 2;
       else slidesThatFit = 1;
 
-      setEnableLoop(services.length > slidesThatFit);
+      setEnableLoop(allServiceItemsData.length > slidesThatFit);
     };
 
     handleResize();
@@ -63,7 +44,7 @@ export const ServicesSliderLeft = () => {
         }}
         className="px-4"
       >
-        {services.map((service) => (
+        {allServiceItemsData.map((service) => (
           <SwiperSlide key={service.id} className="!w-auto">
             <a
               className="px-4 py-2 inline-flex justify-center items-center gap-2 bg-transparent rounded-full whitespace-nowrap border-1 border-gray-400"
