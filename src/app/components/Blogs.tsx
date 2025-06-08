@@ -11,15 +11,21 @@ import { motion } from "framer-motion";
 
 interface Blog {
   id: string;
+  isProject: boolean;
   mainImage: { url: string };
   title: string;
   shortDescription: string;
   slug: string;
 }
 
-export const Blogs = ({ blogsData }: { blogsData: Blog[] }) => {
+export const Blogs = ({ blogsData, getProjects }: { blogsData: Blog[], getProjects: boolean }) => {
   const router = useRouter();
 
+  console.log("blogsData---->", blogsData);
+  
+  const filteredBlogs = getProjects ? blogsData : blogsData.filter((blog) => blog.isProject == false);
+  console.log("filteredBlogs---->", filteredBlogs);
+  
   return (
     <motion.div 
       initial={{ opacity: 0, y: 50 }}
@@ -39,7 +45,7 @@ export const Blogs = ({ blogsData }: { blogsData: Blog[] }) => {
           1024: { slidesPerView: 3 },
         }}
       >
-        {blogsData.map((blog, index) => (
+        {filteredBlogs.map((blog, index) => (
           <SwiperSlide key={blog.id}>
             <motion.a
               initial={{ opacity: 0, y: 30 }}
@@ -49,15 +55,17 @@ export const Blogs = ({ blogsData }: { blogsData: Blog[] }) => {
               onClick={() => router.push(`/blogs/${blog.slug}`)}
               className="block"
             >
-              <motion.img 
-                src={`${process.env.NEXT_PUBLIC_ASSETS}${blog.mainImage.url}`}
-                alt={blog.title} 
-                className="mx-auto"
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.05 + 0.1 }}
-              />
+              <div className="relative h-[300px] w-full">
+                <motion.img 
+                  src={`${process.env.NEXT_PUBLIC_ASSETS}${blog.mainImage.url}`}
+                  alt={blog.title} 
+                  className="object-cover w-full h-full"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.05 + 0.1 }}
+                />
+              </div>
               <motion.div 
                 className="px-2 pt-5"
                 initial={{ opacity: 0, y: 20 }}

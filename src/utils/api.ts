@@ -1,10 +1,11 @@
 export async function fetchData(endpoint: string) {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-    const res = await fetch(`${apiUrl}${endpoint}?populate=*`, {
+    const fullEndpoint = `${apiUrl}${endpoint}${endpoint.includes('?') ? '&' : '?'}populate=*`;
+    const res = await fetch(fullEndpoint, {
       next: { revalidate: 60 },
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
 
@@ -18,4 +19,4 @@ export async function fetchData(endpoint: string) {
     console.error(`Error fetching data from ${endpoint}:`, error);
     return null;
   }
-} 
+}

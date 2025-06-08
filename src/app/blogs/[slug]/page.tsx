@@ -2,6 +2,9 @@ import { Blogs } from "@/app/components/Blogs";
 import { fetchData } from "@/utils/api";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+import rehypeSanitize from 'rehype-sanitize';
 
 async function getBlogData(slug: string) {
   return await fetchData(`/blogs?filters[slug][$eq]=${slug}`);
@@ -18,9 +21,9 @@ type Props = {
 };
 
 export default async function BlogDetailPage({ params }: Props) {
-  const post = await getBlogData(params.slug);
+  const post = (await getBlogData(params.slug))[0];
   const blogsData = await getBlogsData();
-  console.log(post);
+  console.log("post", post);
 
   if (!post) {
     notFound();
@@ -42,18 +45,32 @@ export default async function BlogDetailPage({ params }: Props) {
       </div>
       <div className="w-full relative h-[600px]">
         <Image
-          src={post.img}
+          src={`${process.env.NEXT_PUBLIC_ASSETS}${post.mainImage.url}`}
           alt="blog image"
           fill
           className="object-cover"
           priority
         />
       </div>
-      <article
-        className=" mx-10 md:mx-40 my-20 text-white prose prose-invert prose-lg max-w-none"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
-      <Blogs blogsData={blogsData} />
+      <article className="mx-10 md:mx-40 my-20 text-white prose prose-invert prose-lg max-w-none">  <ReactMarkdown 
+          rehypePlugins={[rehypeRaw, rehypeSanitize]}
+          components={{
+            img: ({...props}) => (
+              <Image
+                src={String(props.src || '')}
+                alt={String(props.alt || '')}
+                width={800}
+                height={400}
+                className="rounded-lg my-8"
+              />
+            ),
+          }}
+        >
+          {post.content}
+        </ReactMarkdown>
+      </article>
+      <Blogs blogsData={blogsData} getProjects={true} />
     </main>
   );
 }
+
