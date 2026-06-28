@@ -58,7 +58,7 @@ export const ServicesSliderLeft = ({ allServiceItemsData }: { allServiceItemsDat
                 alt="arrow"
                 width={20}
                 height={20}
-                className="w-[13] md:w-[20]"
+                className="w-[13px] md:w-[20px]"
               />
             </a>
           </SwiperSlide>

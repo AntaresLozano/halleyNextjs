@@ -46,7 +46,7 @@ export const BlogList = ({ blogs }: BlogsProps) => {
         className="mb-8"
       >
         <div className="w-full flex flex-col items-center gap-4 mb-6">
-          <div className="w-full md:w-4/6 h-16 bg-transparent border-2 border-white text-white text-2xl flex py-2">
+          <div className="w-full md:w-4/6 h-16 bg-transparent border-2 border-white text-white text-base sm:text-xl md:text-2xl flex py-2">
             <div className="w-16 border-r-2 border-white h-full flex items-center justify-center">
               <Image
                 src="/images/search.svg"
@@ -61,15 +61,15 @@ export const BlogList = ({ blogs }: BlogsProps) => {
               placeholder="SEARCH..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full h-full bg-transparent text-white text-2xl pl-4 mb-2 focus:outline-none"
+              className="w-full h-full bg-transparent text-white text-base sm:text-xl md:text-2xl pl-4 mb-2 focus:outline-none"
             />
           </div>
           <div className="flex w-full md:w-auto gap-4 items-center overflow-x-auto scrollbar-hide">
-            <span className="text-white text-2xl">TOPIC:</span>
+            <span className="text-white text-base sm:text-xl md:text-2xl shrink-0">TOPIC:</span>
             {topics.map((topic) => (
               <button
                 key={topic}
-                className={`text-center px-7 py-3 text-2xl whitespace-nowrap cursor-pointer hover:bg-[#00FF7F] hover:text-black transition-all duration-300 ${
+                className={`text-center px-4 sm:px-7 py-2 sm:py-3 text-sm sm:text-xl md:text-2xl whitespace-nowrap cursor-pointer hover:bg-[#00FF7F] hover:text-black transition-all duration-300 ${
                   selectedTopic === topic
                     ? "bg-[#00FF7F] text-black"
                     : " text-white border border-gray-300"
@@ -120,12 +120,12 @@ export const BlogList = ({ blogs }: BlogsProps) => {
 
       {/* Paginación */}
       {totalPages > 1 && (
-        <div className="flex justify-center mt-8">
-          <div className="flex gap-2">
+        <div className="flex justify-center mt-8 overflow-x-auto scrollbar-hide">
+          <div className="flex gap-2 px-2">
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
-              className="px-4 py-2 border rounded-md disabled:opacity-50"
+              className="px-3 sm:px-4 py-2 border rounded-md disabled:opacity-50 text-sm sm:text-base whitespace-nowrap"
             >
               Previous
             </button>
@@ -133,7 +133,7 @@ export const BlogList = ({ blogs }: BlogsProps) => {
               <button
                 key={page}
                 onClick={() => setCurrentPage(page)}
-                className={`px-4 py-2 border rounded-md ${
+                className={`px-3 sm:px-4 py-2 border rounded-md text-sm sm:text-base ${
                   currentPage === page ? "bg-[#00FF7F] text-black" : ""
                 }`}
               >
@@ -145,7 +145,7 @@ export const BlogList = ({ blogs }: BlogsProps) => {
                 setCurrentPage((prev) => Math.min(prev + 1, totalPages))
               }
               disabled={currentPage === totalPages}
-              className="px-4 py-2 border rounded-md disabled:opacity-50"
+              className="px-3 sm:px-4 py-2 border rounded-md disabled:opacity-50 text-sm sm:text-base whitespace-nowrap"
             >
               Next
             </button>

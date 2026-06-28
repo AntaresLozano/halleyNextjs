@@ -91,15 +91,15 @@ export default function Home() {
       </div>
       <div className="relative">
         <Blogs blogsData={blogsData} getProjects={false} />
-        <h1 className=" absolute text-[10rem] top-[-70]  left-[-20] opacity-10 md:text-[40rem] xl:top-[-400] xl:text-[50rem]">
+        <h1 className=" absolute text-[6rem] top-[-70] left-[-20] opacity-10 md:text-[40rem] xl:top-[-400] xl:text-[50rem]">
           BLOG
         </h1>
-        <div className="absolute top-[] w-screen h-10 mt-10 pb-20">
+        <div className="absolute top-10 w-full h-10 mt-10 pb-20 md:top-auto">
           <ServicesSlider allServiceItemsData={allServiceItemsData} />
           <ServicesSliderLeft allServiceItemsData={allServiceItemsData} />
         </div>
       </div>
-      <div className="px-3 mt-50 md:mt-0 md:px-13">
+      <div className="px-3 mt-32 md:mt-0 md:px-13">
         <ContactSection />
       </div>
     </div>

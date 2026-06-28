@@ -15,18 +15,18 @@ export const MenuItem = ({ name, delay, setShowMenu }: MenuProps) => {
       initial={{ x: '30%', opacity: 0 }}
       animate={{ x: '0%', opacity: 1 }}
       transition={{ duration: 0.2, delay: delay/10 }}
-      className="group w-full h-[12vh] text-white flex justify-between items-center px-20 border-solid cursor-pointer relative hover:border-b-2 border-[#00FF7F]"
+      className="group w-full min-h-[10vh] md:h-[12vh] text-white flex justify-between items-center px-6 sm:px-12 md:px-20 border-solid cursor-pointer relative hover:border-b-2 border-[#00FF7F]"
     >
       <Link 
         onClick={() => setShowMenu(false)} 
         className="w-full" 
         href={name === "HOME" ? "/" : `/${name}`}
       >
-        <h1 className="text-[#00FF7F] text-5xl">{name.toUpperCase()}</h1>
+        <h1 className="text-[#00FF7F] text-3xl sm:text-4xl md:text-5xl">{name.toUpperCase()}</h1>
       </Link>
 
       {/* Ícono SVG que aparece al hacer hover */}
-      <div className="absolute right-20 hidden group-hover:block w-16 h-16">
+      <div className="absolute right-6 sm:right-12 md:right-20 hidden group-hover:block w-16 h-16">
         <Image width={64} height={64} src="/arrow_up.svg" alt="Flecha arriba"  objectFit="contain" />
       </div>
     </motion.div>

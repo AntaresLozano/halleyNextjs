@@ -7,15 +7,18 @@ export const AboutUs = ({ aboutUsData }: { aboutUsData: { title: string; descrip
   const [linePosition, setLinePosition] = useState(355); // Valor inicial por defecto
 
   useEffect(() => {
-    if (aboutRef.current) {
-      // Obtener el ancho del elemento "about"
-      const aboutWidth = aboutRef.current.offsetWidth - 0;
-      console.log("aboutWidth", aboutWidth);
-      // Calcular la posición izquierda para la línea (ancho + margen)
-      const newPosition = aboutWidth + 5; // Ajusta el margen según necesites
-      setLinePosition(newPosition);
-    }
-  }, []); // El array vacío asegura que esto solo se ejecute una vez después del montaje
+    const updateLinePosition = () => {
+      if (aboutRef.current) {
+        const aboutWidth = aboutRef.current.offsetWidth - 0;
+        const newPosition = aboutWidth + 5;
+        setLinePosition(newPosition);
+      }
+    };
+
+    updateLinePosition();
+    window.addEventListener("resize", updateLinePosition);
+    return () => window.removeEventListener("resize", updateLinePosition);
+  }, []);
 
   return (
     <div className="w-full h-[35vh] flex flex-col gap-6 text-white py-6">
@@ -27,7 +30,7 @@ export const AboutUs = ({ aboutUsData }: { aboutUsData: { title: string; descrip
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl relative inline-block z-10 before:absolute before:left-[-95px] before:top-1/2 before:h-[5px] before:w-[100px] before:bg-[url('/images/line.svg')] before:bg-contain before:bg-no-repeat before:transform before:-translate-y-1/2"
+          className="text-5xl md:text-7xl relative inline-block z-10 before:hidden md:before:block before:absolute before:left-[-95px] before:top-1/2 before:h-[5px] before:w-[100px] before:bg-[url('/images/line.svg')] before:bg-contain before:bg-no-repeat before:transform before:-translate-y-1/2"
         >
           {aboutUsData.title}
         </motion.h1>
@@ -36,7 +39,7 @@ export const AboutUs = ({ aboutUsData }: { aboutUsData: { title: string; descrip
           whileInView={{ opacity: 1, scaleX: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="absolute h-[2px] top-1/2 pl-5 bg-white"
+          className="absolute h-[2px] top-1/2 pl-5 bg-white hidden md:block"
           style={{ left: `${linePosition + 10}px`, width: `calc(100vw - ${linePosition}px - 25px)` }}
         />
       </div>

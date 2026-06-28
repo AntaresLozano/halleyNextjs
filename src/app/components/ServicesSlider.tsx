@@ -56,7 +56,7 @@ export const ServicesSlider = ({ allServiceItemsData }: { allServiceItemsData: S
                 alt="arrow"
                 width={20}
                 height={20}
-                className="w-[13] md:w-[20]"
+                className="w-[13px] md:w-[20px]"
               />
               <h3 className=" text-xs  md:text-base text-black">
                 {service.name.toUpperCase()}

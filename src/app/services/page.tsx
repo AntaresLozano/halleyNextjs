@@ -66,7 +66,7 @@ export default function Services() {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="w-full text-7xl md:text-8xl"
+              className="w-full text-4xl sm:text-5xl md:text-7xl lg:text-8xl"
             >
               OUR
             </motion.h1>
@@ -74,7 +74,7 @@ export default function Services() {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="w-full text-7xl md:text-8xl"
+              className="w-full text-4xl sm:text-5xl md:text-7xl lg:text-8xl"
             >
               SERVICES
             </motion.h1>

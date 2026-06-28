@@ -18,7 +18,7 @@ const Hero = ({ heroData }: { heroData: { background?: { url: string }[] | null;
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-5xl md:text-7xl"
+          className="text-4xl sm:text-5xl md:text-7xl"
         >
           {heroData.mainTitle}
         </motion.h1>
@@ -50,7 +50,7 @@ const Hero = ({ heroData }: { heroData: { background?: { url: string }[] | null;
           alt="Scroll down"
           width={50}
           height={50}
-          className=" w-6 bottom-8 left-8 absolute  transform -translate-x-1/2 md:w-[50px] md:bottom-16 md:left-16"
+          className="w-6 bottom-8 left-1/2 absolute transform -translate-x-1/2 md:w-[50px] md:bottom-16 md:left-16 md:translate-x-0"
         />
       </motion.div>
     </div>

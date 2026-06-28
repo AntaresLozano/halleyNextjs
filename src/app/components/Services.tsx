@@ -8,7 +8,7 @@ export const Services = (serviceSectionData: {
   description: string;
 }) => {
   return (
-    <div className="flex flex-col mt-15 py-6 gap-3 md:flex-row md:justify-between md:gap-6">
+    <div className="flex flex-col mt-8 py-6 gap-3 md:flex-row md:justify-between md:gap-6">
       <div className="md:w-1/2 md:min-w-[50%]">
         <motion.h1
           initial={{ opacity: 0, y: 50 }}

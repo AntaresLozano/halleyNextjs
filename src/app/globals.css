@@ -64,3 +64,12 @@ div::-webkit-scrollbar-thumb {
 div::-webkit-scrollbar-track {
   background: #222;
 }
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

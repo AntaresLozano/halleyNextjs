@@ -30,11 +30,11 @@ export default async function BlogDetailPage({ params }: Props) {
   }
 
   return (
-    <main className="prose py-10 mt-20 md:mt-40">
-      <div className="mx-7 md:mx-20 mb-10">
-        <span>{post.topic.toUpperCase()}</span>
-        <h1 className="text-7xl">{post.title.toUpperCase()}</h1>
-        <div className="flex pb-5 pt-2 gap-3">
+    <main className="py-10 mt-20 md:mt-40">
+      <div className="mx-4 sm:mx-7 md:mx-20 mb-10">
+        <span className="text-sm sm:text-base">{post.topic.toUpperCase()}</span>
+        <h1 className="text-3xl sm:text-5xl md:text-7xl">{post.title.toUpperCase()}</h1>
+        <div className="flex flex-wrap pb-5 pt-2 gap-3">
           <p className="text-xs text-white py-2 px-6 border-1 border-white">
             {post.date}
           </p>
@@ -43,7 +43,7 @@ export default async function BlogDetailPage({ params }: Props) {
           </p>
         </div>
       </div>
-      <div className="w-full relative h-[600px]">
+      <div className="w-full relative h-[40vh] sm:h-[50vh] md:h-[600px]">
         <Image
           src={`${process.env.NEXT_PUBLIC_ASSETS}${post.mainImage.url}`}
           alt="blog image"
@@ -52,7 +52,8 @@ export default async function BlogDetailPage({ params }: Props) {
           priority
         />
       </div>
-      <article className="mx-10 md:mx-40 my-20 text-white prose prose-invert prose-lg max-w-none">  <ReactMarkdown 
+      <article className="mx-4 sm:mx-10 md:mx-40 my-12 md:my-20 text-white max-w-none text-sm sm:text-base leading-relaxed [&_h1]:text-2xl [&_h1]:sm:text-3xl [&_h1]:md:text-4xl [&_h1]:font-bold [&_h1]:mt-8 [&_h1]:mb-4 [&_h2]:text-xl [&_h2]:sm:text-2xl [&_h2]:md:text-3xl [&_h2]:font-bold [&_h2]:mt-6 [&_h2]:mb-3 [&_h3]:text-lg [&_h3]:sm:text-xl [&_h3]:font-semibold [&_h3]:mt-4 [&_h3]:mb-2 [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-4 [&_a]:text-[#00FF7F] [&_a]:underline">
+        <ReactMarkdown 
           rehypePlugins={[rehypeRaw, rehypeSanitize]}
           components={{
             img: ({...props}) => (
@@ -61,7 +62,7 @@ export default async function BlogDetailPage({ params }: Props) {
                 alt={String(props.alt || '')}
                 width={800}
                 height={400}
-                className="rounded-lg my-8"
+                className="rounded-lg my-8 max-w-full h-auto w-full"
               />
             ),
           }}

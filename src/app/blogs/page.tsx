@@ -53,12 +53,12 @@ export default function Blogs() {
   }
 
   return (
-    <div className="w-screen pt-[20vh]  md:pt-[30vh] flex flex-col items-center">
+    <div className="w-full pt-[20vh] md:pt-[30vh] flex flex-col items-center">
       <motion.h1
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.5 }}
-      className="text-white text-center text-5xl md:text-9xl mb-0 md:mb-8">
+      className="text-white text-center text-4xl sm:text-5xl md:text-9xl mb-0 md:mb-8">
         AUDIOVISUAL BLOG
       </motion.h1>
       <BlogList blogs={blogs} />

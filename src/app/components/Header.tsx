@@ -36,7 +36,7 @@ export const Header = () => {
             <Image
               src={!isHomePage ? "/logo_green_solo.svg": "/logo_white.svg"}
               alt="Halley Cinema logo"
-              className=""
+              className="w-14 h-14 md:w-[100px] md:h-[100px]"
               width={100}
               height={100}
             />
