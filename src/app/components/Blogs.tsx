@@ -57,7 +57,7 @@ export const Blogs = ({ blogsData, getProjects }: { blogsData: Blog[], getProjec
             >
               <div className="relative h-[300px] w-full">
                 <motion.img 
-                  src={`${process.env.NEXT_PUBLIC_ASSETS}${blog.mainImage.url}`}
+                  src={blog.mainImage?.url ? `${process.env.NEXT_PUBLIC_ASSETS}${blog.mainImage.url}` : ''}
                   alt={blog.title} 
                   className="object-cover w-full h-full"
                   initial={{ opacity: 0, scale: 0.9 }}

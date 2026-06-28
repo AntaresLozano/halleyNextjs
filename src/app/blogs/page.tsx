@@ -8,9 +8,7 @@ import { Loader } from "../components/Loader";
 
 interface ApiBlog {
   id: string;
-  mainImage: {
-    url: string;
-  };
+  mainImage?: { url: string } | null;
   title: string;
   shortDescription: string;
   topic: string;
@@ -29,7 +27,9 @@ export default function Blogs() {
         if (data) {
           const formattedBlogs = data.map((blog: ApiBlog) => ({
             id: blog.id,
-            img: `${process.env.NEXT_PUBLIC_ASSETS}${blog.mainImage.url}`,
+            img: blog.mainImage?.url
+              ? `${process.env.NEXT_PUBLIC_ASSETS}${blog.mainImage.url}`
+              : '',
             title: blog.title,
             description: blog.shortDescription,
             topic: blog.topic,

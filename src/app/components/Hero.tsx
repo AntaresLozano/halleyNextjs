@@ -2,8 +2,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const Hero = ({ heroData }: { heroData: { background: { url: string }[]; mainTitle: string; description: string; callToActionButton: string } }) => {
-  const imageUrl = heroData.background[0]?.url;
+const Hero = ({ heroData }: { heroData: { background?: { url: string }[] | null; mainTitle: string; description: string; callToActionButton: string } }) => {
+  const imageUrl = heroData.background?.[0]?.url;
   const fullImageUrl = `${process.env.NEXT_PUBLIC_ASSETS}${imageUrl}`;
   return (
     <div className="relative flex justify-center items-end w-screen h-screen bg-cover bg-top" style={{ backgroundImage: `url(${fullImageUrl})` }}>
