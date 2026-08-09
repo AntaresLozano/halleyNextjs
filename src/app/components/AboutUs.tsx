@@ -59,9 +59,11 @@ export const AboutUs = ({ aboutUsData }: { aboutUsData: { title: string; descrip
           { number: aboutUsData.clients, label: "CLIENTS" },
           { number: aboutUsData.countries, label: "COUNTRIES" },
           { number: aboutUsData.creatives, label: "CREATIVES" }
-        ].map((item, index) => (
+        ]
+          .filter((item) => item.number !== 0)
+          .map((item, index) => (
           <motion.div
-            key={index}
+            key={item.label}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
