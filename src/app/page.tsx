@@ -18,7 +18,7 @@ interface Service {
   id: string;
   name: string;
   description: string;
-  image: { url: string };
+  image: { url: string } | null;
 }
 
 export default function Home() {

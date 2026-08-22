@@ -1,6 +1,7 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { getImageUrl } from "@/utils/images";
 
 export const Service = ({
   name,
@@ -9,10 +10,9 @@ export const Service = ({
 }: {
   name: string;
   description: string;
-  img: { url: string };
+  img: { url: string } | null;
 }) => {
-  const imageUrl = img.url;
-  const fullImageUrl = `${process.env.NEXT_PUBLIC_ASSETS}${imageUrl}`;
+  const fullImageUrl = getImageUrl(img);
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,

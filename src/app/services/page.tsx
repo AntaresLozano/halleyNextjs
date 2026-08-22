@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { fetchData } from "@/utils/api";
+import { getImageUrl } from "@/utils/images";
 import { useEffect, useState } from "react";
 import { Loader } from "../components/Loader";
 interface ServiceItem {
@@ -14,7 +15,7 @@ interface Service {
   name: string;
   image: {
     url: string;
-  };
+  } | null;
   service_items: ServiceItem[];
 }
 
@@ -89,8 +90,7 @@ export default function Services() {
           </motion.p>
         </motion.div>
         {servicesData.map((service, index) => {
-          const imageUrl = service.image.url;
-          const fullImageUrl = `${process.env.NEXT_PUBLIC_ASSETS}${imageUrl}`;
+          const fullImageUrl = getImageUrl(service.image);
           return (
             <motion.div
               key={service.id}

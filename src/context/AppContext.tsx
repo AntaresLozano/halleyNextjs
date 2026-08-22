@@ -6,7 +6,7 @@ interface Service {
   id: string;
   name: string;
   description: string;
-  image: { url: string };
+  image: { url: string } | null;
   service_items: Array<{
     id: string;
     name: string;
