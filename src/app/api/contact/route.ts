@@ -2,9 +2,15 @@ import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
 export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
 
-function envValue(name: string) {
-  return process.env[name]?.trim() ?? '';
+function requiredSettings() {
+  return {
+    SMTP_HOST: process.env.SMTP_HOST?.trim() ?? '',
+    SMTP_USER: process.env.SMTP_USER?.trim() ?? '',
+    SMTP_PASSWORD: (process.env.SMTP_PASSWORD ?? '').replace(/\s+/g, ''),
+    CONTACT_EMAIL: process.env.CONTACT_EMAIL?.trim() ?? '',
+  };
 }
 
 function mailErrorDetail(error: unknown) {
@@ -17,18 +23,26 @@ function mailErrorDetail(error: unknown) {
 }
 
 export async function POST(request: Request) {
-  const host = envValue('SMTP_HOST');
-  const port = Number(envValue('SMTP_PORT') || '465');
-  const user = envValue('SMTP_USER');
-  const pass = envValue('SMTP_PASSWORD').replace(/\s+/g, '');
-  const to = envValue('CONTACT_EMAIL');
+  const settings = requiredSettings();
+  const missing = Object.entries(settings)
+    .filter(([, value]) => !value)
+    .map(([name]) => name);
 
-  if (!host || !user || !pass || !to) {
+  if (missing.length > 0) {
     return NextResponse.json(
-      { error: 'Failed to send email', detail: 'SMTP settings are missing on the server' },
+      {
+        error: 'Failed to send email',
+        detail: `Missing on the server: ${missing.join(', ')}`,
+      },
       { status: 500 }
     );
   }
+
+  const host = settings.SMTP_HOST;
+  const port = Number(process.env.SMTP_PORT?.trim() || '465');
+  const user = settings.SMTP_USER;
+  const pass = settings.SMTP_PASSWORD;
+  const to = settings.CONTACT_EMAIL;
 
   try {
     const { firstName, lastName, email, phone, subject, description } = await request.json();
