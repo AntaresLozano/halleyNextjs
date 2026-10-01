@@ -8,6 +8,7 @@ const SUCCESS_DISMISS_MS = 6000;
 export const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'success' | 'error' | null>(null);
+  const [errorDetail, setErrorDetail] = useState<string | null>(null);
 
   useEffect(() => {
     if (submitStatus !== 'success') return;
@@ -20,6 +21,7 @@ export const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
+    setErrorDetail(null);
 
     const formData = new FormData(e.currentTarget);
     const data = {
@@ -41,6 +43,8 @@ export const ContactSection = () => {
       });
 
       if (!response.ok) {
+        const body = await response.json().catch(() => null);
+        setErrorDetail(typeof body?.detail === 'string' ? body.detail : null);
         throw new Error('Failed to send message');
       }
 
@@ -152,6 +156,9 @@ export const ContactSection = () => {
                   ? "We'll get back to you soon."
                   : 'Something went wrong. Please try again.'}
               </p>
+              {!isSuccess && errorDetail && (
+                <p className="mt-2 break-words text-xs text-white/70">{errorDetail}</p>
+              )}
             </div>
             <button
               type="button"
