@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { getImageUrl } from "@/utils/images";
 
 interface Blog {
   id: string;
@@ -57,7 +58,7 @@ export const Blogs = ({ blogsData, getProjects }: { blogsData: Blog[], getProjec
             >
               <div className="relative h-[300px] w-full">
                 <motion.img 
-                  src={blog.mainImage?.url ? `${process.env.NEXT_PUBLIC_ASSETS}${blog.mainImage.url}` : ''}
+                  src={getImageUrl(blog.mainImage)}
                   alt={blog.title} 
                   className="object-cover w-full h-full"
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -73,7 +74,7 @@ export const Blogs = ({ blogsData, getProjects }: { blogsData: Blog[], getProjec
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.05 + 0.15 }}
               >
-                <h2 className="text-gray-300">{blog.title.toUpperCase()}</h2>
+                <h2 className="text-gray-300">{blog.title?.toUpperCase()}</h2>
                 <p className="text-gray-400">{blog.shortDescription}</p>
               </motion.div>
             </motion.a>

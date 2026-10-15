@@ -1,5 +1,6 @@
 import { Blogs } from "@/app/components/Blogs";
 import { fetchData } from "@/utils/api";
+import { getImageUrl } from "@/utils/images";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import ReactMarkdown from 'react-markdown';
@@ -21,9 +22,8 @@ type Props = {
 };
 
 export default async function BlogDetailPage({ params }: Props) {
-  const post = (await getBlogData(params.slug))[0];
+  const post = (await getBlogData(params.slug))?.[0];
   const blogsData = await getBlogsData();
-  console.log("post", post);
 
   if (!post) {
     notFound();
@@ -32,12 +32,14 @@ export default async function BlogDetailPage({ params }: Props) {
   return (
     <main className="py-10 mt-20 md:mt-40">
       <div className="mx-4 sm:mx-7 md:mx-20 mb-10">
-        <span className="text-sm sm:text-base">{post.topic.toUpperCase()}</span>
-        <h1 className="text-3xl sm:text-5xl md:text-7xl">{post.title.toUpperCase()}</h1>
+        {post.topic && <span className="text-sm sm:text-base">{post.topic.toUpperCase()}</span>}
+        <h1 className="text-3xl sm:text-5xl md:text-7xl">{post.title?.toUpperCase()}</h1>
         <div className="flex flex-wrap pb-5 pt-2 gap-3">
-          <p className="text-xs text-white py-2 px-6 border-1 border-white">
-            {post.date}
-          </p>
+          {post.date && (
+            <p className="text-xs text-white py-2 px-6 border-1 border-white">
+              {post.date}
+            </p>
+          )}
           <p className="text-xs text-white py-2 px-6 border-1 border-white">
             9 MIN
           </p>
@@ -45,7 +47,7 @@ export default async function BlogDetailPage({ params }: Props) {
       </div>
       <div className="w-full relative h-[40vh] sm:h-[50vh] md:h-[600px]">
         <Image
-          src={`${process.env.NEXT_PUBLIC_ASSETS}${post.mainImage.url}`}
+          src={getImageUrl(post.mainImage)}
           alt="blog image"
           fill
           className="object-cover"
@@ -67,7 +69,7 @@ export default async function BlogDetailPage({ params }: Props) {
             ),
           }}
         >
-          {post.content}
+          {post.content ?? ''}
         </ReactMarkdown>
       </article>
       <Blogs blogsData={blogsData} getProjects={true} />

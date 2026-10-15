@@ -4,6 +4,7 @@ import { Blog } from "./interfaces/blog.interface";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { fetchData } from "@/utils/api";
+import { getImageUrl } from "@/utils/images";
 import { Loader } from "../components/Loader";
 
 interface ApiBlog {
@@ -27,9 +28,7 @@ export default function Blogs() {
         if (data) {
           const formattedBlogs = data.map((blog: ApiBlog) => ({
             id: blog.id,
-            img: blog.mainImage?.url
-              ? `${process.env.NEXT_PUBLIC_ASSETS}${blog.mainImage.url}`
-              : '',
+            img: getImageUrl(blog.mainImage),
             title: blog.title,
             description: blog.shortDescription,
             topic: blog.topic,
