@@ -23,7 +23,9 @@ export const ContactSection = () => {
     setSubmitStatus(null);
     setErrorDetail(null);
 
-    const formData = new FormData(e.currentTarget);
+    // React clears e.currentTarget once the handler awaits, so keep a reference to the form.
+    const form = e.currentTarget;
+    const formData = new FormData(form);
     const data = {
       firstName: formData.get('firstName'),
       lastName: formData.get('lastName'),
@@ -49,7 +51,7 @@ export const ContactSection = () => {
       }
 
       setSubmitStatus('success');
-      e.currentTarget.reset();
+      form.reset();
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitStatus('error');
