@@ -40,7 +40,7 @@ export const AboutUs = ({ aboutUsData }: { aboutUsData: { title: string; descrip
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="absolute h-[2px] top-1/2 pl-5 bg-white hidden md:block"
-          style={{ left: `${linePosition + 10}px`, width: `calc(100vw - ${linePosition}px - 25px)` }}
+          style={{ left: `${linePosition + 10}px`, width: `calc(100% - ${linePosition}px - 10px)` }}
         />
       </div>
       <motion.p

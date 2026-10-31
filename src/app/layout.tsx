@@ -31,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${k2dFont.className} antialiased relative overflow-x-clip`}>
+      <body className={`${k2dFont.className} antialiased relative`}>
         <AppProvider>
           <Header />
           {children}

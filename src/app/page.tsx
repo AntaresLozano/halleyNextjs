@@ -89,7 +89,7 @@ export default function Home() {
         </div>
         <MessageSection messageSectionData={messageSectionData.message} />
       </div>
-      <div className="relative">
+      <div className="relative overflow-x-clip">
         <Blogs blogsData={blogsData} getProjects={false} />
         <h1 className=" absolute text-[6rem] top-[-70] left-[-20] opacity-10 md:text-[40rem] xl:top-[-400] xl:text-[50rem]">
           BLOG
