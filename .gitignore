@@ -46,3 +46,9 @@ next-env.d.ts
 .env.development.local
 .env.test.local
 .env.production.local
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+.env.e2e
+/e2e/.auth/

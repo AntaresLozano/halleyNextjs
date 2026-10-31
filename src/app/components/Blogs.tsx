@@ -22,11 +22,7 @@ interface Blog {
 export const Blogs = ({ blogsData, getProjects }: { blogsData: Blog[], getProjects: boolean }) => {
   const router = useRouter();
 
-  console.log("blogsData---->", blogsData);
-  
   const filteredBlogs = getProjects ? blogsData : blogsData.filter((blog) => blog.isProject == false);
-  console.log("filteredBlogs---->", filteredBlogs);
-  
   return (
     <motion.div 
       initial={{ opacity: 0, y: 50 }}

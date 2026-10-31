@@ -48,7 +48,7 @@ export const ServicesSliderLeft = ({ allServiceItemsData }: { allServiceItemsDat
           <SwiperSlide key={service.id} className="!w-auto">
             <a
               className="px-4 py-2 inline-flex justify-center items-center gap-2 bg-transparent rounded-full whitespace-nowrap border-1 border-gray-400"
-              href={`/services/${service.id}`}
+              href="/services"
             >
               <h3 className=" text-xs  md:text-base text-gray-400">
                 {service.name.toUpperCase()}

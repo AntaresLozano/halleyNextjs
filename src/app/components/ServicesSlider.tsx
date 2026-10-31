@@ -49,7 +49,7 @@ export const ServicesSlider = ({ allServiceItemsData }: { allServiceItemsData: S
           <SwiperSlide key={service.id} className="!w-auto">
             <a
               className="px-4 py-2 inline-flex justify-center items-center gap-2 bg-white rounded-full whitespace-nowrap"
-              href={`/services/${service.id}`}
+              href="/services"
             >
               <Image
                 src="/images/arrow-right.svg"

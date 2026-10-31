@@ -39,16 +39,16 @@ export const Footer = () => {
               <Link href="/" className="text-md hover:opacity-80">
                 HOME
               </Link>
-              <Link href="/" className="text-md hover:opacity-80">
+              <Link href="/services" className="text-md hover:opacity-80">
                 SERVICES
               </Link>
-              <Link href="/" className="text-md hover:opacity-80">
+              <Link href="/portfolio" className="text-md hover:opacity-80">
                 PORTFOLIO
               </Link>
-              <Link href="/" className="text-md hover:opacity-80">
+              <Link href="/blogs" className="text-md hover:opacity-80">
                 BLOG
               </Link>
-              <Link href="/" className="text-md hover:opacity-80">
+              <Link href="/contact" className="text-md hover:opacity-80">
                 CONTACT
               </Link>
             </div>

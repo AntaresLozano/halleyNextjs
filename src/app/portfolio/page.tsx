@@ -6,13 +6,14 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { fetchData } from "@/utils/api";
 import { Loader } from "../components/Loader";
+import { getImageUrl } from "@/utils/images";
 
 interface Project {
   id: string;
   title: string;
   shortDescription: string;
   slug: string;
-  mainImage: { url: string };
+  mainImage: { url: string } | null;
   topic: string;
 }
 
@@ -67,10 +68,9 @@ export default function Portfolio() {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="w-[100%] md:w-[30%] text-lg"
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos
-          perferendis, quidem numquam libero itaque animi adipisci, quasi
-          eveniet iusto mollitia ex nesciunt, id officia rem nihil voluptatibus
-          quisquam vel eligendi.
+          Original films from Halley Cinema: video essays, animated shorts and
+          visual experiments where research meets cinema. Pick a project to see
+          how it was made.
         </motion.p>
       </motion.div>
 
@@ -85,7 +85,7 @@ export default function Portfolio() {
             <div
               className="w-full md:w-[80%] h-[50vh] md:h-[70vh] relative"
               style={{
-                backgroundImage: `url('${process.env.NEXT_PUBLIC_ASSETS}${selectedProject.mainImage.url}')`,
+                backgroundImage: `url('${getImageUrl(selectedProject.mainImage)}')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -101,7 +101,7 @@ export default function Portfolio() {
                       href={`/blogs/${selectedProject.slug}`}
                       className="text-white underline hover:text-gray-300 transition text-sm"
                     >
-                      Ver proyecto
+                      VIEW PROJECT
                     </Link>
                   </div>
                 </div>
@@ -124,7 +124,7 @@ export default function Portfolio() {
               key={project.id}
               width={100}
               height={100}
-              src={`${process.env.NEXT_PUBLIC_ASSETS}${project.mainImage.url}`}
+              src={getImageUrl(project.mainImage)}
               alt={project.title}
               onClick={() => setSelectedProject(project)}
               className={`min-w-[100px] md:min-w-0 w-[100px] h-28 md:w-full md:h-36 object-cover mb-2 cursor-pointer hover:scale-105 hover:brightness-110 transition-transform duration-200 ${
