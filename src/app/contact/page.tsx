@@ -1,9 +1,5 @@
-import { ContactSection } from "../components/ContactSection";
+import { ProjectChat } from "../components/ProjectChat";
 
 export default function Contact() {
-  return (
-    <div className="mt-24 md:mt-0" >
-      <ContactSection />
-    </div>
-  );
+  return <ProjectChat />;
 }
