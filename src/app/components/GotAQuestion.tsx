@@ -13,7 +13,7 @@ export const GotAQuestion = ({ message }: { message: string }) => {
   return (
     <section
       aria-labelledby="got-a-question"
-      className="relative z-10 overflow-hidden border-b-2 border-[#0D0D0D] bg-[#00FF7F] px-[18px] pt-[60px] pb-[50px] text-[#0D0D0D] md:px-10 md:pt-[90px] md:pb-[70px]"
+      className="relative z-10 overflow-hidden bg-[#00FF7F] px-[18px] pt-[60px] pb-[50px] text-[#0D0D0D] md:px-10 md:pt-[90px] md:pb-[70px]"
     >
       <motion.div
         initial={{ opacity: 0, y: 30, rotate: 0 }}
