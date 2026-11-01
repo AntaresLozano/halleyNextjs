@@ -6,7 +6,8 @@ import { Blogs } from "./components/Blogs";
 import { Button } from "./components/Button";
 import { ContactSection } from "./components/ContactSection";
 import Hero from "./components/Hero";
-import { MessageSection } from "./components/MessageSection";
+import { GotAQuestion } from "./components/GotAQuestion";
+import { Manifesto } from "./components/Manifesto";
 import { Service } from "./components/Service";
 import { Services } from "./components/Services";
 import { ServicesSlider } from "./components/ServicesSlider";
@@ -72,6 +73,18 @@ export default function Home() {
       <Hero heroData={heroData} />
       <div className="px-3 md:px-13">
         <AboutUs aboutUsData={aboutUsData} />
+        <Manifesto
+          stats={[
+            { number: aboutUsData.projects, label: "Projects delivered" },
+            { number: aboutUsData.clients, label: "Clients" },
+            { number: aboutUsData.countries, label: "Countries" },
+            { number: aboutUsData.creatives, label: "Creatives" },
+            {
+              number: blogsData.filter((blog: { isProject: boolean }) => blog.isProject).length,
+              label: "Original essays",
+            },
+          ]}
+        />
         <Services
           title={serviceSectionData.title}
           description={serviceSectionData.description}
@@ -87,8 +100,8 @@ export default function Home() {
         <div className="w-full flex justify-center py-20 items-center">
           <Button name="DISCOVER MORE" path="/services" />
         </div>
-        <MessageSection messageSectionData={messageSectionData.message} />
       </div>
+      <GotAQuestion message={messageSectionData.message} />
       <div className="relative overflow-x-clip">
         <Blogs blogsData={blogsData} getProjects={false} />
         <h1 className=" absolute text-[6rem] top-[-70] left-[-20] opacity-10 md:text-[40rem] xl:top-[-400] xl:text-[50rem]">

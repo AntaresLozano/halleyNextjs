@@ -21,7 +21,7 @@ export const AboutUs = ({ aboutUsData }: { aboutUsData: { title: string; descrip
   }, []);
 
   return (
-    <div className="w-full h-[35vh] flex flex-col gap-6 text-white py-6">
+    <div className="w-full flex flex-col gap-6 text-white py-6">
       <div className="relative">
         <motion.h1
           id="about"
@@ -52,29 +52,6 @@ export const AboutUs = ({ aboutUsData }: { aboutUsData: { title: string; descrip
       >
         {aboutUsData.description}
       </motion.p>
-      
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {[
-          { number: aboutUsData.projects, label: "PROJECTS" },
-          { number: aboutUsData.clients, label: "CLIENTS" },
-          { number: aboutUsData.countries, label: "COUNTRIES" },
-          { number: aboutUsData.creatives, label: "CREATIVES" }
-        ]
-          .filter((item) => item.number !== 0)
-          .map((item, index) => (
-          <motion.div
-            key={item.label}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 + index * 0.1 }}
-            className="flex flex-col text-center"
-          >
-            <h3 className="text-4xl md:text-6xl">{item.number}</h3>
-            <span className="text-xs md:text-md text-gray-500">{item.label}</span>
-          </motion.div>
-        ))}
-      </div>
     </div>
   );
 };

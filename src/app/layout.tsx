@@ -8,6 +8,7 @@ import { AppProvider } from '@/context/AppContext';
 const k2dFont = K2D({
   subsets: ["latin"], // Asegúrate de especificar los subsets
   weight: ["400", "700"], // Puedes ajustar los pesos que necesites
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
