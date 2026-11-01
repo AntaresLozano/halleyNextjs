@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { AboutUs } from "./components/AboutUs";
 import { Blogs } from "./components/Blogs";
 import { Button } from "./components/Button";
-import { ContactSection } from "./components/ContactSection";
 import Hero from "./components/Hero";
 import { GotAQuestion } from "./components/GotAQuestion";
 import { Manifesto } from "./components/Manifesto";
@@ -101,7 +100,6 @@ export default function Home() {
           <Button name="DISCOVER MORE" path="/services" />
         </div>
       </div>
-      <GotAQuestion message={messageSectionData.message} />
       <div className="relative overflow-x-clip">
         <Blogs blogsData={blogsData} getProjects={false} />
         <h1 className=" absolute text-[6rem] top-[-70] left-[-20] opacity-10 md:text-[40rem] xl:top-[-400] xl:text-[50rem]">
@@ -112,8 +110,8 @@ export default function Home() {
           <ServicesSliderLeft allServiceItemsData={allServiceItemsData} />
         </div>
       </div>
-      <div className="px-3 mt-32 md:mt-0 md:px-13">
-        <ContactSection />
+      <div className="mt-40 md:mt-8 lg:mt-[17rem]">
+        <GotAQuestion message={messageSectionData.message} />
       </div>
     </div>
   );
